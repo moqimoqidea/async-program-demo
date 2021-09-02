@@ -1,8 +1,6 @@
 package org.Second.Chapter.ThreadPool;
 
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -34,11 +32,17 @@ public class AsyncThreadPoolExample2 {
 	}
 
 	// 0自定义线程池
-	private final static int AVALIABLE_PROCESSORS = Runtime.getRuntime().availableProcessors();
-	private final static ThreadPoolExecutor POOL_EXECUTOR = new ThreadPoolExecutor(AVALIABLE_PROCESSORS,
-			AVALIABLE_PROCESSORS * 2, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(5),
+	private final static int AVAILABLE_PROCESSORS = Runtime.getRuntime().availableProcessors();
+	private final static ThreadPoolExecutor POOL_EXECUTOR = new ThreadPoolExecutor(AVAILABLE_PROCESSORS,
+			AVAILABLE_PROCESSORS * 2, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(5),
 			new ThreadPoolExecutor.CallerRunsPolicy());
 
+    /**
+     * 61
+     * --- doSomethingA---
+     * --- doSomethingB---
+     * -------------------------- hang --------------------------
+     */
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 
 		long start = System.currentTimeMillis();

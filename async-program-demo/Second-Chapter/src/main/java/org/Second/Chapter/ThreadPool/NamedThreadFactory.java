@@ -20,12 +20,12 @@ public class NamedThreadFactory implements ThreadFactory {
 		this(name, true);
 	}
 
-	public NamedThreadFactory(String preffix, boolean daemon) {
-		SecurityManager s = System.getSecurityManager();
-		group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
-		namePrefix = preffix + "-" + poolNumber.getAndIncrement() + "-thread-";
-		isDaemon = daemon;
-	}
+	public NamedThreadFactory(String prefix, boolean daemon) {
+        SecurityManager s = System.getSecurityManager();
+        group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
+        namePrefix = prefix + "-" + poolNumber.getAndIncrement() + "-thread-";
+        isDaemon = daemon;
+    }
 
 	public Thread newThread(Runnable r) {
 		Thread t = new Thread(group, r, namePrefix + threadNumber.getAndIncrement(), 0);
