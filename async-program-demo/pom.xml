@@ -15,7 +15,6 @@
   </properties>
 
   <modules>
-  	<module>First-Chapter</module>
   	<module>Second-Chapter</module>
   	<module>Third-Chapter</module>
     <module>ChapterIV</module>
