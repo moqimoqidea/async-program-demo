@@ -9,14 +9,16 @@
 		<artifactId>Demo</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.books.dubbo.demo</groupId>
+
 	<artifactId>Consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Consumer</name>
 	<url>http://maven.apache.org</url>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
@@ -24,6 +26,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.16</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
 		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
 		<dependency>
@@ -36,12 +39,6 @@
 			<groupId>com.books.dubbo.demo</groupId>
 			<artifactId>Sdk</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
@@ -64,6 +61,7 @@
 		</dependency>
 
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -75,7 +73,7 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			
 		</plugins>
 	</build>
+
 </project>

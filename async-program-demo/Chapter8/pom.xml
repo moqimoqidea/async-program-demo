@@ -9,14 +9,16 @@
 		<artifactId>async-program-demo</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.jiaduo.async.demo</groupId>
+
 	<artifactId>Chapter8</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Chapter8</name>
 	<url>http://maven.apache.org</url>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.rocketmq</groupId>
@@ -54,6 +56,6 @@
 			<artifactId>akka-remote_2.11</artifactId>
 			<version>2.3.7</version>
 		</dependency>
-
 	</dependencies>
+
 </project>

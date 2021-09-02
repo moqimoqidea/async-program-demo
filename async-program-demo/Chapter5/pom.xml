@@ -9,14 +9,16 @@
 		<artifactId>async-program-demo</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.jiaduo.async.demo</groupId>
-	<artifactId>Chapter5</artifactId>
+
+    <artifactId>Chapter5</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Chapter5</name>
 	<url>http://maven.apache.org</url>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -52,4 +54,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 </project>

@@ -9,14 +9,16 @@
 		<artifactId>async-program-demo</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.jiaduo.async.demo</groupId>
+
 	<artifactId>ChapterIV</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ChapterIV</name>
 	<url>http://maven.apache.org</url>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
 		<dependency>
@@ -37,4 +39,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 </project>
