@@ -16,36 +16,41 @@ public class AsyncThreadExample {
 		System.out.println("--- doSomethingA---");
 	}
 
-	public static void doSomethingB() {
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("--- doSomethingB---");
+    public static void doSomethingB() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("--- doSomethingB---");
 
-	}
+    }
 
-	public static void main(String[] args) throws InterruptedException {
+    /**
+     * --- doSomethingA---
+     * --- doSomethingB---
+     * 2086
+     */
+    public static void main(String[] args) throws InterruptedException {
 
-		long start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
 
-		// 1.开启异步单元执行任务A
-		Thread thread = new Thread(() -> {
-			try {
-				doSomethingA();
+        // 1.开启异步单元执行任务A
+        Thread thread = new Thread(() -> {
+            try {
+                doSomethingA();
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}, "threadA");
-		thread.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }, "threadA");
+        thread.start();
 
-		// 2.执行任务B
-		doSomethingB();
+        // 2.执行任务B
+        doSomethingB();
 
-		// 3.同步等待线程A运行结束
-		thread.join();
-		System.out.println(System.currentTimeMillis() - start);
-	}
+        // 3.同步等待线程A运行结束
+        thread.join();
+        System.out.println(System.currentTimeMillis() - start);
+    }
 }

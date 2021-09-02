@@ -26,6 +26,11 @@ public class AsyncThreadExample2 {
 
 	}
 
+    /**
+     * --- doSomethingA---
+     * --- doSomethingB---
+     * 2006
+     */
 	public static void main(String[] args) throws InterruptedException {
 		long start = System.currentTimeMillis();
 		// 1.开启异步单元执行任务A
@@ -40,7 +45,7 @@ public class AsyncThreadExample2 {
 				}
 			}
 		};
-		
+
 		//thread.setDaemon(true);
 		thread.start();
 
