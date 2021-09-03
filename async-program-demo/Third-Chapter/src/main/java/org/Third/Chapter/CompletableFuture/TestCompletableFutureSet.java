@@ -10,9 +10,9 @@ import java.util.function.BiConsumer;
 
 public class TestCompletableFutureSet {
 	// 0自定义线程池
-	private final static int AVALIABLE_PROCESSORS = Runtime.getRuntime().availableProcessors();
-	private final static ThreadPoolExecutor POOL_EXECUTOR = new ThreadPoolExecutor(AVALIABLE_PROCESSORS,
-			AVALIABLE_PROCESSORS * 2, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(5),
+	private final static int AVAILABLE_PROCESSORS = Runtime.getRuntime().availableProcessors();
+	private final static ThreadPoolExecutor POOL_EXECUTOR = new ThreadPoolExecutor(AVAILABLE_PROCESSORS,
+			AVAILABLE_PROCESSORS * 2, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(5),
 			new ThreadPoolExecutor.CallerRunsPolicy());
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
