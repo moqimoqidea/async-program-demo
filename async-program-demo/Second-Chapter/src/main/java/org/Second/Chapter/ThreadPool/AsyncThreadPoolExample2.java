@@ -1,6 +1,5 @@
 package org.Second.Chapter.ThreadPool;
 
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -38,39 +37,39 @@ public class AsyncThreadPoolExample2 {
 			new ThreadPoolExecutor.CallerRunsPolicy());
 
     /**
-     * 61
+     * 75
      * --- doSomethingA---
      * --- doSomethingB---
-     * -------------------------- hang --------------------------
      */
-	public static void main(String[] args) throws InterruptedException, ExecutionException {
+    public static void main(String[] args) throws InterruptedException {
 
-		long start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
 
-		// 1.开启异步单元执行任务A
-		POOL_EXECUTOR.execute(() -> {
-			try {
-				doSomethingA();
+        // 1.开启异步单元执行任务A
+        POOL_EXECUTOR.execute(() -> {
+            try {
+                doSomethingA();
 
-			} catch (Exception e) {
-				e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
 			}
 		});
 
-		// 2.执行任务B
-		POOL_EXECUTOR.execute(() -> {
-			try {
-				doSomethingB();
+        // 2.执行任务B
+        POOL_EXECUTOR.execute(() -> {
+            try {
+                doSomethingB();
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
-		// 3.同步等待线程A运行结束
-		System.out.println(System.currentTimeMillis() - start);
+        // 3.同步等待线程A运行结束
+        System.out.println(System.currentTimeMillis() - start);
 
-		// 4.挂起当前线程
-		Thread.currentThread().join();
-	}
+        // 4.挂起当前线程
+        Thread.sleep(3000);
+        POOL_EXECUTOR.shutdown();
+    }
 }

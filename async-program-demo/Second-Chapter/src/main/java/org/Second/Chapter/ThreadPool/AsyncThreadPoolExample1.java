@@ -37,10 +37,9 @@ public class AsyncThreadPoolExample1 {
     }
 
     /**
-     * --- doSomethingB---
-     * 2090
      * --- doSomethingA---
-     * -------------------------- hang --------------------------
+     * --- doSomethingB---
+     * 2085
      */
     public static void main(String[] args) throws InterruptedException {
 
@@ -63,6 +62,8 @@ public class AsyncThreadPoolExample1 {
 		System.out.println(System.currentTimeMillis() - start);
 
 		// 4.挂起当前线程
-		Thread.currentThread().join();
+		// Thread.currentThread().join();
+        Thread.sleep(3000);
+        POOL_EXECUTOR.shutdown();
 	}
 }
