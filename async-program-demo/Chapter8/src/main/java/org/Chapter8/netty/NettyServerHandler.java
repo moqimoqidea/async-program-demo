@@ -15,10 +15,8 @@
  */
 package org.Chapter8.netty;
 
-import io.netty.channel.ChannelHandler.Sharable;
-
-
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -45,14 +43,14 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 				String reqId = str.split(":")[1];
 
 				// 2.拼接结果，请求id,协议帧分隔符(模拟服务端执行服务产生结果)
-				String resp =  generatorFrame("im jiaduo ", reqId);
+				String resp = generatorFrame("im jiaduo ", reqId);
 
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				
+
 				// 3.写回结果
 				ctx.channel().writeAndFlush(Unpooled.copiedBuffer(resp.getBytes()));
 			} catch (Exception e) {

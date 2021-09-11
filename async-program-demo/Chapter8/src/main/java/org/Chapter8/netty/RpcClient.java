@@ -1,18 +1,9 @@
 package org.Chapter8.netty;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicLong;
-
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.ChannelPipeline;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -23,13 +14,18 @@ import io.reactivex.Flowable;
 import io.reactivex.processors.ReplayProcessor;
 import io.reactivex.schedulers.Schedulers;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicLong;
+
 /**
  * 帧格式 消息内容:请求id|
- * 
+ *
  * @author luxu.zlx
  *
  */
 public class RpcClient {
+
 	// 连接通道
 	private volatile Channel channel;
 	// 请求id生成器
@@ -46,7 +42,7 @@ public class RpcClient {
 			b.group(group).channel(NioSocketChannel.class).option(ChannelOption.TCP_NODELAY, true)
 					.handler(new ChannelInitializer<SocketChannel>() {
 						@Override
-						public void initChannel(SocketChannel ch) throws Exception {
+						public void initChannel(SocketChannel ch) {
 							ChannelPipeline p = ch.pipeline();
 							// 1.1设置帧分隔符解码器
 							ByteBuf delimiter = Unpooled.copiedBuffer("|".getBytes());
@@ -78,7 +74,7 @@ public class RpcClient {
 	public void close() {
 
 		if (null != b) {
-			b.group().shutdownGracefully();
+            b.config().group().shutdownGracefully();
 		}
 		if (null != channel) {
 			channel.close();
@@ -210,7 +206,6 @@ public class RpcClient {
 		FutureMapUtil.put(reqId, future);
 
 		// 6.同步等待结果
-		String result = future.get();
-		return result;
+        return future.get();
 	}
 }
