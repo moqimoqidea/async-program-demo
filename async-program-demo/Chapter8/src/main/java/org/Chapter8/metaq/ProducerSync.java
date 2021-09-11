@@ -7,6 +7,12 @@ import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 public class ProducerSync {
+
+    /**
+     * SendResult [sendStatus=SEND_OK, msgId=C0A8322D317818B4AAC237F29B5F0000, offsetMsgId=C0A8322D00002A9F00000000000016E4, messageQueue=MessageQueue [topic=TopicTest, brokerName=moqi-13mbp, queueId=2], queueOffset=8]
+     * SendResult [sendStatus=SEND_OK, msgId=C0A8322D317818B4AAC237F29B6A0001, offsetMsgId=C0A8322D00002A9F00000000000017A2, messageQueue=MessageQueue [topic=TopicTest, brokerName=moqi-13mbp, queueId=3], queueOffset=6]
+     * SendResult [sendStatus=SEND_OK, msgId=C0A8322D317818B4AAC237F29B6C0002, offsetMsgId=C0A8322D00002A9F0000000000001860, messageQueue=MessageQueue [topic=TopicTest, brokerName=moqi-13mbp, queueId=0], queueOffset=7]
+     */
 	public static void main(String[] args) throws MQClientException, InterruptedException {
 
 		// 1. 创建生产者实例
