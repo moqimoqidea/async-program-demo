@@ -1,35 +1,34 @@
 package org.Chapter8.akka;
 
-import akka.actor.ActorRef;
 import akka.actor.ActorSelection;
-import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
 public class ClientActor extends UntypedActor {
-	private LoggingAdapter log = Logging.getLogger(getContext().system(), this);
 
-	private ActorSelection actorRef = getContext()
-			.actorSelection("akka.tcp://AkkaRemoteServer@127.0.0.1:2552/user/CalculatorActor");
+    private final LoggingAdapter log = Logging.getLogger(getContext().system(), this);
 
-	// private ActorRef actorRef =
-	// getContext().actorOf(Props.create(CalculatorActor.class), "calculatorActor");
+    private final ActorSelection actorRef = getContext()
+            .actorSelection("akka.tcp://AkkaRemoteServer@127.0.0.1:2552/user/CalculatorActor");
 
-	@Override
-	public void onReceive(Object message) throws Exception {
-		if (message.equals("DoCalcs")) {
+    // private ActorRef actorRef =
+    // getContext().actorOf(Props.create(CalculatorActor.class), "calculatorActor");
 
-			// log.info("Got a calc job, send it to the remote calculator");
-			log.info("Got a calc job, local calculator");
+    @Override
+    public void onReceive(Object message) {
+        if ("DoCalcs".equals(message)) {
 
-			System.out.println(actorRef);
-			actorRef.tell(new Messages.Sum(1, 2), getSelf());
+            // log.info("Got a calc job, send it to the remote calculator");
+            log.info("Got a calc job, local calculator");
 
-		} else if (message instanceof Messages.Result) {
-			Messages.Result result = (Messages.Result) message;
-			log.info("Got result back from calculator: {}", result.getResult());
-		}
+            System.out.println(actorRef);
+            actorRef.tell(new Messages.Sum(1, 2), getSelf());
 
+        } else if (message instanceof Messages.Result) {
+            Messages.Result result = (Messages.Result) message;
+            log.info("Got result back from calculator: {}", result.getResult());
+        }
 	}
+
 }
