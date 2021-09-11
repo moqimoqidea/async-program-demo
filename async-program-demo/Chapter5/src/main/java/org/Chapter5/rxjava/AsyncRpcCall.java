@@ -1,52 +1,36 @@
 package org.Chapter5.rxjava;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
 import io.reactivex.Flowable;
-import io.reactivex.functions.Consumer;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
+import java.util.concurrent.CompletableFuture;
 
 public class AsyncRpcCall {
 
-	public static String rpcCall(String ip, String param) {
+    /**
+     * disposed = false
+     * message from main thread.
+     * message from main future async thread.
+     */
+    public static void main(String[] args) throws InterruptedException {
 
-		System.out.println(ip + " rpcCall:" + param);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "message from main future async thread.";
+        });
 
-		return param;
+        Disposable subscribe = Flowable.fromCallable(future::get)
+                .subscribeOn(Schedulers.io()).subscribe(System.out::println);
+        boolean disposed = subscribe.isDisposed();
+        System.out.println("disposed = " + disposed);
+        System.out.println("message from main thread.");
 
-	}
-
-	public static void main(String[] args) throws InterruptedException {
-
-		CompletableFuture<String> future = CompletableFuture.supplyAsync(new Supplier<String>() {
-
-			@Override
-			public String get() {
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return "test";
-			}
-		});
-
-		Flowable.fromCallable(()->future.get()).subscribeOn(Schedulers.io()).subscribe(System.out::println);
-		System.out.println(111);
-		
-		Thread.sleep(3000);
-	}
+        Thread.sleep(3000);
+    }
 
 }
