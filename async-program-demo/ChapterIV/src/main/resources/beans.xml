@@ -13,9 +13,9 @@
 	<task:annotation-driven
 		exception-handler="myAsyncUncaughtExceptionHandler" />
 
-	<bean id="myAsyncUncaughtExceptionHandler"
-		class="org.ChapterIV.TaskExecutor.MyAsyncUncaughtExceptionHandler"></bean>
-		
+    <bean id="myAsyncUncaughtExceptionHandler"
+          class="org.ChapterIV.TaskExecutor.MyAsyncUncaughtExceptionHandler"/>
+
 	<context:component-scan
 		base-package="org.ChapterIV.TaskExecutor" />
 
@@ -32,18 +32,17 @@
 		<property name="queueCapacity" value="20" />
 		<!--5.拒绝策略 -->
 		<property name="rejectedExecutionHandler">
-			<bean
-				class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+			<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
 		</property>
-		<property name="waitForTasksToCompleteOnShutdown"
-			value="true"></property>
+
+        <property name="waitForTasksToCompleteOnShutdown" value="true"/>
 	</bean>
 
 	<bean id="asyncExecutorExample"
 		class="org.ChapterIV.TaskExecutor.AsyncExecutorExample">
 		<property name="taskExecutor" ref="taskExecutor" />
 	</bean>
-	<!-- <bean id="asyncCommentExample" class="com.jiaduo.async.AsyncProgram.AsyncCommentExample"> 
+	<!-- <bean id="asyncCommentExample" class="com.jiaduo.async.AsyncProgram.AsyncCommentExample">
 		</bean> -->
 
 </beans>

@@ -4,9 +4,9 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 public class AsyncExecutorExample {
-	private class MessagePrinterTask implements Runnable {
+	private static class MessagePrinterTask implements Runnable {
 
-		private String message;
+		private final String message;
 
 		public MessagePrinterTask(String message) {
 			this.message = message;
@@ -44,4 +44,5 @@ public class AsyncExecutorExample {
 			taskExecutor.execute(new MessagePrinterTask("Message" + i));
 		}
 	}
+
 }

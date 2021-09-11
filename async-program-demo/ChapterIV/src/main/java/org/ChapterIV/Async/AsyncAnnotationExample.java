@@ -1,13 +1,10 @@
 package org.ChapterIV.Async;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
-
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.CompletableFuture;
 
 @EnableAsync // 开启异步执行
 @Component // 注入该Bean到Spring容器
@@ -36,8 +33,9 @@ public class AsyncAnnotationExample {
 
 	@Async
 	public void testException() throws Exception {
-		   if (true)
-			throw new Exception("error");
+		   if (true) {
+               throw new Exception("error");
+           }
 	}
 
 	@Async
@@ -57,4 +55,5 @@ public class AsyncAnnotationExample {
 		// 3.返回结果
 		return result;
 	}
+
 }
